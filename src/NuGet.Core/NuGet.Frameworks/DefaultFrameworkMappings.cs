@@ -93,6 +93,10 @@ namespace NuGet.Frameworks
                             new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.WinRT, "winrt"), // legacy
                             new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.UAP, "uap"),
                             new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.Tizen, "tizen"),
+
+                            new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.MazeServer, "server"),
+                            new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.MazeAdministration, "admin"),
+                            new KeyValuePair<string, string>(FrameworkConstants.FrameworkIdentifiers.MazeClient, "client")
                         };
                 }
 
@@ -377,7 +381,16 @@ namespace NuGet.Frameworks
                         // net463 projects support NetStandard2.0
                         CreateStandardMapping(
                             FrameworkConstants.CommonFrameworks.Net463,
-                            FrameworkConstants.CommonFrameworks.NetStandard20)
+                            FrameworkConstants.CommonFrameworks.NetStandard20),
+
+                        // net47 projects support NetStandard2.0
+                        CreateStandardMapping(
+                            FrameworkConstants.CommonFrameworks.Net47,
+                            FrameworkConstants.CommonFrameworks.NetStandard20),
+
+                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeServer10, FrameworkConstants.CommonFrameworks.NetCoreApp21),
+                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeAdministration10, FrameworkConstants.CommonFrameworks.Net47),
+                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeClient10, FrameworkConstants.CommonFrameworks.Net47)
                     }
                         .Concat(new[]
                         {

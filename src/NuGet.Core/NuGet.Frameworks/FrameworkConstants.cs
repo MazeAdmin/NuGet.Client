@@ -68,6 +68,11 @@ namespace NuGet.Frameworks
             public const string XamarinXboxOne = "Xamarin.XboxOne";
             public const string UAP = "UAP";
             public const string Tizen = "Tizen";
+
+            // Maze
+            public const string MazeServer = "MazeServer";
+            public const string MazeAdministration = "MazeAdministration";
+            public const string MazeClient = "MazeClient";
         }
 
         /// <summary>
@@ -178,6 +183,15 @@ namespace NuGet.Frameworks
                 = new NuGetFramework(FrameworkIdentifiers.NetCoreApp, new Version(2, 2, 0, 0));
             public static readonly NuGetFramework NetCoreApp30
                 = new NuGetFramework(FrameworkIdentifiers.NetCoreApp, new Version(3, 0, 0, 0));
+
+            public static readonly NuGetFramework Net47 = new NuGetFramework(FrameworkIdentifiers.Net, new Version(4, 7, 0, 0));
+
+            public static readonly NuGetFramework MazeServer10
+                = new NuGetFramework(FrameworkIdentifiers.MazeServer, new Version(1, 0, 0, 0));
+            public static readonly NuGetFramework MazeAdministration10
+                = new NuGetFramework(FrameworkIdentifiers.MazeAdministration, new Version(1, 0, 0, 0));
+            public static readonly NuGetFramework MazeClient10
+                = new NuGetFramework(FrameworkIdentifiers.MazeClient, new Version(1, 0, 0, 0));
         }
     }
 }
