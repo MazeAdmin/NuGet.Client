@@ -386,12 +386,9 @@ namespace NuGet.Frameworks
                         // net47 projects support NetStandard2.0
                         CreateStandardMapping(
                             FrameworkConstants.CommonFrameworks.Net47,
-                            FrameworkConstants.CommonFrameworks.NetStandard20),
-
-                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeServer10, FrameworkConstants.CommonFrameworks.NetCoreApp21),
-                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeAdministration10, FrameworkConstants.CommonFrameworks.Net47),
-                        CreateStandardMapping(FrameworkConstants.CommonFrameworks.MazeClient10, FrameworkConstants.CommonFrameworks.Net47)
+                            FrameworkConstants.CommonFrameworks.NetStandard20)
                     }
+                        .Concat(MazeFrameworks.MazeNetFrameworks.Select(x => CreateMazeMapping(x.Key, x.Value)))
                         .Concat(new[]
                         {
                             // dnxcore50 -> dotnet5.6, netstandard1.5
@@ -558,6 +555,18 @@ namespace NuGet.Frameworks
                 new FrameworkRange(
                     FrameworkConstants.CommonFrameworks.NetStandard10,
                     netPlatform));
+        }
+
+        private static OneWayCompatibilityMappingEntry CreateMazeMapping(
+            NuGetFramework mazeFramework,
+            NuGetFramework framework)
+        {
+            return new OneWayCompatibilityMappingEntry(
+                new FrameworkRange(
+                    mazeFramework,
+                    new NuGetFramework(mazeFramework.Framework, FrameworkConstants.MaxVersion)),
+                new FrameworkRange(new NuGetFramework(framework.Framework, FrameworkConstants.EmptyVersion),
+                    framework));
         }
 
         private static IEnumerable<OneWayCompatibilityMappingEntry> CreateGenerationAndStandardMapping(
