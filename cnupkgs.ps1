@@ -1,4 +1,5 @@
 $nupkgs = [IO.Path]::Combine( $PSScriptRoot, "nupkgs" );
+$version = "5.0.1-rtm";
 
 function New-NuGetPackage {
     [CmdletBinding()]
@@ -10,7 +11,7 @@ function New-NuGetPackage {
 
     "Creating package $Name"
 
-    dotnet pack src/$Subfolder/$Name/$Name.csproj -o $nupkgs /p:PackageId=Maze.$Name -c Release --no-build
+    dotnet pack src/$Subfolder/$Name/$Name.csproj -o $nupkgs /p:PackageId=Maze.$Name /p:Version=$version -c Release --no-build
 
     "Patching $Name"
 
@@ -39,16 +40,16 @@ function New-NuGetPackage {
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-New-NuGetPackage -Name 'NuGet.Commands'
-New-NuGetPackage -Name 'NuGet.Common'
-New-NuGetPackage -Name 'NuGet.Configuration'
-New-NuGetPackage -Name 'NuGet.Credentials' -Subfolder 'NuGet.Clients'
-New-NuGetPackage -Name 'NuGet.DependencyResolver.Core'
-New-NuGetPackage -Name 'NuGet.Frameworks'
-New-NuGetPackage -Name 'NuGet.LibraryModel'
-New-NuGetPackage -Name 'NuGet.Packaging'
-New-NuGetPackage -Name 'NuGet.Packaging.Core'
-New-NuGetPackage -Name 'NuGet.ProjectModel'
+# New-NuGetPackage -Name 'NuGet.Commands'
+# New-NuGetPackage -Name 'NuGet.Common'
+# New-NuGetPackage -Name 'NuGet.Configuration'
+# New-NuGetPackage -Name 'NuGet.Credentials'
+# New-NuGetPackage -Name 'NuGet.DependencyResolver.Core'
+# New-NuGetPackage -Name 'NuGet.Frameworks'
+# New-NuGetPackage -Name 'NuGet.LibraryModel'
+# New-NuGetPackage -Name 'NuGet.Packaging'
+# New-NuGetPackage -Name 'NuGet.Packaging.Core'
+# New-NuGetPackage -Name 'NuGet.ProjectModel'
 New-NuGetPackage -Name 'NuGet.Protocol'
 New-NuGetPackage -Name 'NuGet.Resolver'
 New-NuGetPackage -Name 'NuGet.Versioning'
